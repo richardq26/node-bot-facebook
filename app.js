@@ -10,6 +10,9 @@ app.set("view engine", ".html");
 //Static files
 app.use(express.static(path.join(__dirname, "public")));
 
+// TOKEN DE ACCESO DESDE azure
+const PAGE_ACCES_TOKEN = process.env.PAGE_ACCES_TOKEN;
+
 // Métodos de los webhook
 app.post('/webhook', (req,res)=>{
     const body=req.body;
