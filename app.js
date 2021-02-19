@@ -47,6 +47,8 @@ app.get('/webhook', (req,res)=>{
     // http://localhost:4000/webhook?hub.verify_token=stringUnico&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe
 });
 
-
+app.get('/', (req,res)=>{
+    res.status(200).send('Este es un bot de facebook messenger');
+})
 
 module.exports = app;
