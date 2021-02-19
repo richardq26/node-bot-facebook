@@ -1,10 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const path = require("path");
 const app = express().use(bodyParser.json());
 
 //Settings
 app.set("port", process.env.PORT || 4000);
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", ".html");
+//Static files
+app.use(express.static(path.join(__dirname, "public")));
 
 // Métodos de los webhook
 app.post('/webhook', (req,res)=>{
@@ -48,7 +52,8 @@ app.get('/webhook', (req,res)=>{
 });
 
 app.get('/', (req,res)=>{
-    res.status(200).send('Este es un bot de facebook messenger');
+    res.sendFile(path.join(__dirname,'views/index.html'));
+    //res.render("index")
 })
 
 module.exports = app;
