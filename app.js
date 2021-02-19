@@ -48,7 +48,7 @@ app.get('/webhook', (req,res)=>{
 });
 
 app.get('/', (req,res)=>{
-    res.status(200).send('Este es un bot de facebook');
+    res.status(200).send('Este es un bot de facebook, consultar las credenciales');
 })
 
 
