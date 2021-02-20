@@ -62,7 +62,6 @@ app.get("/webhook", (req, res) => {
   } else {
     res.sendStatus(404);
   }
-
   // La ruta sería esta
   // http://localhost:4000/webhook?hub.verify_token=stringUnico&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe
 });
