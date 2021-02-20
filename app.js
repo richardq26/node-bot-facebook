@@ -119,7 +119,17 @@ handleMessage = (sender_psid, received_message) => {
 };
 
 // Funcionalidad del postback, llamar de nuevo al webhook
-handlePostback = (sender_psid, received_postback) => {};
+handlePostback = (sender_psid, received_postback) => {
+    let response = '';
+    const payload = received_postback.payload;
+    if(payload === 'yes'){
+        response = {'text': 'Confirmaste la imagen :D'}
+    }else if (payload === 'no'){
+        response = {'text': 'Envía otra foto :('}
+    }
+
+    callSendApi(sender_psid, response);
+};
 
 // Nos permite responder mensajes
 callSendApi = (sender_psid, response) => {
