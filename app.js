@@ -30,11 +30,11 @@ app.post("/webhook", (req, res) => {
 
       // Validar que estamos recibiendo un mensaje
       // webhookEvent es un json
-      if(webhookEvent.message){
-        handleMessage(sender_psid, webhookEvent.message);
-      }else if(webhookEvent.postback){
-        handlePostback(sender_psid, webhookEvent.postback);
-      }
+      // if(webhookEvent.message){
+      //   handleMessage(sender_psid, webhookEvent.message);
+      // }else if(webhookEvent.postback){
+      //   handlePostback(sender_psid, webhookEvent.postback);
+      // }
     });
 
     res.status(200).send("Evento recibido");
@@ -83,14 +83,14 @@ handleMessage = (sender_psid, received_message) => {
     }
   }
 
-  callSendApi(sender_psid, response);
+  callSendAPI(sender_psid, response);
 };
 
 // Funcionalidad del postback
 handlePostback = (sender_psid, received_postback) => {};
 
 // Nos permite responder mensajes
-callSendApi = (sender_psid, response) => {
+callSendAPI = (sender_psid, response) => {
 
   // Esta es la estructura que fb nos acepta
   const requestBody ={
@@ -98,7 +98,7 @@ callSendApi = (sender_psid, response) => {
       'id': sender_psid
     },
     'message': response
-  }
+  };
 
   request({
     'uri': 'https://graph.facebook.com/v2.6/me/messages', 'qs': {'access_token': PAGE_ACCES_TOKEN},'method': 'POST', 'json': requestBody
