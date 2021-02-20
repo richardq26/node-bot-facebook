@@ -79,7 +79,7 @@ handleMessage = (sender_psid, received_message) => {
   // Si el mensaje recibido tiene texto
   if(received_message.text){
     response= {
-      'text': `Tu mensaje fue ${received_message.txt} :D`
+      'text': `Tu mensaje fue ${received_message.text} :D`
     }
   }
 
