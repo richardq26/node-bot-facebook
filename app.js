@@ -79,14 +79,53 @@ handleMessage = (sender_psid, received_message) => {
   // Si el mensaje recibido tiene texto
   if(received_message.text){
     response= {
-      'text': `Tu mensaje fue ${received_message.text} :D`
+      'text': `Tu mensaje fue ${received_message.text} :D.
+      Ahora mándame una imagen.`
     }
+  }else if(received_message.attachments){
+      // Si el mensaje tiene contenido multimedia
+      const url = received_message.attachments[0].payload.url;
+
+      response = {
+        "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"generic",
+              "elements":[
+                 {
+                  "title":"Confirma tu imagen",
+                  "image_url":url,
+                  "subtitle":"Este es un ejemplo de prueba.",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://petersfancybrownhats.com/view?item=103",
+                    "messenger_extensions": false,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://petersfancybrownhats.com/"
+                  },
+                  "buttons":[
+                    {
+                      "type":"postback",
+                      "title":"Sí",
+                      "payload":"yes"
+                    },{
+                      "type":"postback",
+                      "title":"No",
+                      "payload":"no"
+                    }              
+                  ]      
+                }
+              ]
+            }
+          }
+          
+      }
   }
 
   callSendApi(sender_psid, response);
 };
 
-// Funcionalidad del postback
+// Funcionalidad del postback, llamar de nuevo al webhook
 handlePostback = (sender_psid, received_postback) => {};
 
 // Nos permite responder mensajes
