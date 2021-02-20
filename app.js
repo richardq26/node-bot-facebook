@@ -96,13 +96,6 @@ handleMessage = (sender_psid, received_message) => {
                   "title":"Confirma tu imagen",
                   "image_url":url,
                   "subtitle":"Este es un ejemplo de prueba.",
-                  "default_action": {
-                    "type": "web_url",
-                    "url": "https://petersfancybrownhats.com/view?item=103",
-                    "messenger_extensions": false,
-                    "webview_height_ratio": "tall",
-                    "fallback_url": "https://petersfancybrownhats.com/"
-                  },
                   "buttons":[
                     {
                       "type":"postback",
